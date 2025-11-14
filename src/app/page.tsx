@@ -4,6 +4,9 @@ import { Sparkles, Camera, BookOpen, Users, ShoppingBag, MapPin, Palette, Wand2,
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { useState, useEffect } from "react"
+import { LibrarySection } from "@/components/custom/LibrarySection"
+import { MarketplaceSection } from "@/components/custom/MarketplaceSection"
+import { DesignsSection } from "@/components/custom/DesignsSection"
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -245,7 +248,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Library Section - Melhorado */}
+      {/* Library Section - INTEGRADO COM SUPABASE */}
       <section id="library" className="py-20 px-4 sm:px-6 relative">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -278,28 +281,14 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="order-1 md:order-2 grid grid-cols-2 gap-4">
-              {[
-                { title: "Símbolos Celtas", chapters: "12 capítulos", gradient: "from-emerald-500/20 to-teal-500/20" },
-                { title: "Mitologia Nórdica", chapters: "15 capítulos", gradient: "from-blue-500/20 to-indigo-500/20" },
-                { title: "Arte Japonesa", chapters: "18 capítulos", gradient: "from-red-500/20 to-pink-500/20" },
-                { title: "Geometria Sagrada", chapters: "10 capítulos", gradient: "from-purple-500/20 to-violet-500/20" }
-              ].map((item, i) => (
-                <Card key={i} className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700/50 p-6 hover:scale-105 hover:shadow-xl transition-all duration-500 group cursor-pointer backdrop-blur-sm">
-                  <div className={`aspect-square rounded-lg bg-gradient-to-br ${item.gradient} mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 relative overflow-hidden`}>
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <BookOpen className="w-8 h-8 text-purple-300 relative z-10 group-hover:rotate-12 transition-transform duration-500" />
-                  </div>
-                  <h4 className="text-white font-semibold group-hover:text-purple-300 transition-colors duration-300">{item.title}</h4>
-                  <p className="text-sm text-gray-400 mt-1">{item.chapters}</p>
-                </Card>
-              ))}
+            <div className="order-1 md:order-2">
+              <LibrarySection />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Community Section - Melhorado */}
+      {/* Community Section - INTEGRADO COM SUPABASE */}
       <section id="community" className="py-20 px-4 sm:px-6 bg-slate-900/50 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
@@ -310,10 +299,12 @@ export default function Home() {
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4">
               Conecte-se com o <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Mundo</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">Inspire-se, compartilhe e cresça junto com milhões de entusiastas</p>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-12">Inspire-se, compartilhe e cresça junto com milhões de entusiastas</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <DesignsSection />
+
+          <div className="grid md:grid-cols-3 gap-8 mt-12">
             {[
               { icon: Users, title: "Feed Social", desc: "Compartilhe suas criações, curta e comente designs de outros usuários e tatuadores.", gradient: "from-purple-500 to-pink-500" },
               { icon: Star, title: "Inspiração Diária", desc: "Descubra tendências, estilos populares e designs que estão bombando na comunidade.", gradient: "from-pink-500 to-cyan-500" },
@@ -334,31 +325,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Marketplace Section - Melhorado */}
+      {/* Marketplace Section - INTEGRADO COM SUPABASE */}
       <section id="marketplace" className="py-20 px-4 sm:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { name: "Dragon Pack", price: "$29", sales: "2.4k vendas", gradient: "from-red-500/20 to-orange-500/20" },
-                  { name: "Floral Set", price: "$19", sales: "3.1k vendas", gradient: "from-pink-500/20 to-rose-500/20" },
-                  { name: "Tribal Collection", price: "$39", sales: "1.8k vendas", gradient: "from-purple-500/20 to-indigo-500/20" },
-                  { name: "Minimalist Bundle", price: "$24", sales: "4.2k vendas", gradient: "from-cyan-500/20 to-blue-500/20" }
-                ].map((item, i) => (
-                  <Card key={i} className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-slate-700/50 p-4 hover:scale-105 hover:shadow-xl transition-all duration-500 group cursor-pointer backdrop-blur-sm">
-                    <div className={`aspect-square rounded-lg bg-gradient-to-br ${item.gradient} mb-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 relative overflow-hidden`}>
-                      <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <ShoppingBag className="w-8 h-8 text-purple-300 relative z-10" />
-                    </div>
-                    <h4 className="text-white font-semibold text-sm mb-1 group-hover:text-purple-300 transition-colors duration-300">{item.name}</h4>
-                    <div className="flex items-center justify-between">
-                      <span className="text-purple-400 font-bold group-hover:text-purple-300 transition-colors duration-300">{item.price}</span>
-                      <span className="text-xs text-gray-500">{item.sales}</span>
-                    </div>
-                  </Card>
-                ))}
-              </div>
+              <MarketplaceSection />
             </div>
             <div className="order-1 md:order-2">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/30 mb-6 hover:bg-pink-500/20 transition-all duration-300">
